@@ -3,6 +3,9 @@
 """
 
 def find_character(supply_character:str, supply_sentence:str):
+    """A functions that will try and find the character in the sentence.
+    # Returns True if found
+    # Rerturns False if not found"""
     if supply_character in supply_sentence:
         print(supply_character + " was found in " + supply_sentence)
         return True
@@ -18,11 +21,11 @@ def get_supply_character():
         return get_supply_character()
     return the_char
 
-def get_supply_sentence():
+def get_supply_sentence()->str:
     """Function dedicated to getting supplied sentence"""
     return input("Supply your sentence: ")
 
-def get_valid_sentence(the_char:str):
+def get_valid_sentence(the_char:str)->str:
     """A sentence that contains the character the user inserted"""
     the_sentence = get_supply_sentence()
     if find_character(the_char, the_sentence):
