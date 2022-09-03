@@ -61,4 +61,4 @@ def main():
             print("Idiot! Y or N. \nSuffer another round!")
             continue
 
-main()
+main() # Run as main function
