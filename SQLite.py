@@ -14,6 +14,7 @@ command1 = """CREATE TABLE IF NOT EXISTS
 stores(store_id INTEGER PRIMARY KEY, location TEXT)"""
 
 cursor.execute(command1)
+connection.commit()
 
 # create purchases table
 
@@ -22,8 +23,10 @@ purchases(purchase_id INTEGER PRIMARY KEY, store_id INTEGER, total_cost FLOAT,
 FOREIGN KEY(store_id) REFERENCES stores(store_id))"""
 
 cursor.execute(command2)
+connection.commit()
 
 # add to purchases
 
 cursor.execute("INSERT INTO purchases VALUES (54, 21, 15.49)")
 cursor.execute("INSERT INTO purchases VALUES (23, 64, 21.12)")
+connection.commit()
