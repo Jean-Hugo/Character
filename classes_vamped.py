@@ -1,4 +1,5 @@
 """This code file contains code that guides the users on a person"""
+import dis
 from PyQt5.QtWidgets import QApplication, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QGridLayout, QLineEdit
 
 class Person:
@@ -83,6 +84,48 @@ def search_people_in_database(person:str):
     """TODO Search peron in the databasee"""
     return
 
+def buiild_the_window():
+    window = QWidget()
+    window.setWindowTitle("Our App")
+    return window
+
+def build_button(button_name="Button"):
+    button = QPushButton()
+    button.setText(button_name)
+    return button
+
+def build_line_edit(placeholder_text="Uhm?"):
+    line_edit = QLineEdit()
+    line_edit.setPlaceholderText(placeholder_text)
+    return line_edit
+
+def change_line_edit(the_line_edit:QLineEdit, text:str):
+    the_line_edit.setText(text)
+    the_line_edit.move(250, 250)
+    font = the_line_edit.font() # made a copy of the current font 
+    font.setPointSize(20) # Altering size
+    font.setBold(True) # Making bold
+    the_line_edit.setFont(font) # Replacing the original font
+    the_line_edit.resize(the_line_edit.sizeHint())
+    return
+
+
+def ux_charcter():
+    """GUI for the charcter and search program"""
+    app = QApplication([])
+    display_window = buiild_the_window()
+    display_window.show()
+    button = build_button("Push me!")
+    button.setParent(display_window)
+    button.show()
+    button.move(30, 40)
+    line_edit = build_line_edit("I'm the placeholder text��")
+    line_edit.setParent(display_window)
+    line_edit.show()
+    button.pressed.connect(lambda: change_line_edit(line_edit, "You pushed the button!"))
+    app.exec_()
+
+
 def main(filename:str):
     names = create_list(filename)
     if(input("Do you want to display?(Y/N)") == "Y"):
@@ -101,4 +144,4 @@ def main(filename:str):
                 print("Invalid option. Try again\n")
 
 
-main("names_list.txt")
+our_app = ux_charcter()
