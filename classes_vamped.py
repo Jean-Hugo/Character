@@ -1,5 +1,4 @@
 """This code file contains code that guides the users on a person"""
-import dis
 from PyQt5.QtWidgets import QApplication, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QGridLayout, QLineEdit
 
 class Person:
@@ -84,7 +83,7 @@ def search_people_in_database(person:str):
     """TODO Search peron in the databasee"""
     return
 
-def buiild_the_window():
+def build_the_window():
     """Creates the window"""
     window = QWidget()
     window.setWindowTitle("Our App")
@@ -114,39 +113,103 @@ def change_line_edit(the_line_edit:QLineEdit, text:str):
     the_line_edit.setStyleSheet('color: red')
     return
 
+def build_table(data_objects:list[object]=None):
+    """Build table with objects"""
+    if data_objects is None:
+        data_objects = retrieve_person_objects()
+    the_table = QTableWidget()
+    table_headings = data_objects[0].__dict__.keys()
+    the_table.setHorizontalHeaderLabels(table_headings)
+    the_table.setRowCount(1)
+    print(table_headings)
+    return the_table
+    
 
 def ux_charcter():
     """GUI for the charcter and search program"""
     app = QApplication([])
-    display_window = buiild_the_window()
-    display_window.show()
-    button = build_button("Push me!")
-    button.setParent(display_window)
-    button.show()
-    button.move(30, 40)
-    line_edit = build_line_edit("I'm the placeholder text��")
-    line_edit.setParent(display_window)
-    line_edit.show()
-    button.pressed.connect(lambda: change_line_edit(line_edit, "You pushed the button!"))
+
+    def window():# The window
+        return build_the_window()
+
+    def button(parent, text):# The build
+        button = build_button()
+        button.setParent(parent)
+        button.setText(text)
+        return button
+    
+    def lineEdit(parent, placetext): # The line edit 
+        line_edit = build_line_edit(placetext)
+        line_edit.setParent(parent)
+        return line_edit
+    
+    def table(parent, dataobjects):
+        table = build_table(dataobjects)
+        table.setParent(parent)
+    
+    def setup_window(): # builds the layout
+        push_me_button.show()
+        push_me_button.move(30, 40)
+        line_result.show()
+        line_result.move(250, 250)
+        display_window.show()
+    
+    def setup_actions(): # Sets up things that happen
+        push_me_button.pressed.connect(lambda: change_line_edit(line_result, "You pushed the button!"))
+
+    display_window = window()
+    push_me_button = button(display_window, "Push me!")
+    line_result = lineEdit(display_window, "I'm the placeholder text��")
+    person_table = table(display_window, retrieve_person_objects("names_list.txt"))
+    setup_window()
+    setup_actions()
     app.exec_()
 
+def get_person_object_list(loaded_person_details:list):
+    """Returns a list of Person objects. Given the list of loaded person details"""
+    person_objects_list = []
+    for person in loaded_person_details:
+        name = person[0]
+        surname = person[1]
+        gender = person[2]
+        person_objects_list.append(Person(name=name, surname=surname, gender=gender))
+    return person_objects_list
 
-def main(filename:str):
-    names = create_list(filename)
+
+def terminal_ui(loaded_person_details):
+    """The UI in the terminal/commandline"""
     if(input("Do you want to display?(Y/N)") == "Y"):
         while True:
             option = input("1.All\n2.Names Only\n3.Name + Gender\n")
             if option == "1":
-                print_all = [print(name) for name in names] # One liner advance
+                print_all = [print(name) for name in loaded_person_details] # One liner advance
                 break
             elif option == "2":
-                print_names_only = [print(name[0]) for name in names]
+                print_names_only = [print(name[0]) for name in loaded_person_details]
                 break
             elif option == "3":
-                print_names_gender = [print(name[0], name[2]) for name in names]
+                print_names_gender = [print(name[0], name[2]) for name in loaded_person_details]
                 break
             else:
                 print("Invalid option. Try again\n")
 
 
-our_app = ux_charcter()
+def retrieve_person_objects(filename:str):
+    loaded_person_details = create_list(filename)
+    person_objects = get_person_object_list(loaded_person_details=loaded_person_details)
+    return person_objects
+
+def main():
+    our_app = ux_charcter()
+
+
+if __name__ == "__main__":
+    main()
+
+
+       
+
+
+    
+
+
