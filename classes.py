@@ -7,6 +7,13 @@ class Person:
         self.first_name = first_name
         self.last_name = last_name
 
+    def information(self):
+        print("Ek is " + str(self.age) + " jaar oud")
+        print("Ek weeg " + str(self.weight) + " kg")
+        print("Ek is " + str(self.height) + "cm lank")
+        print("My naam is " + self.first_name)
+        print("My van is " + self.last_name)
+
 user = Person(25, 80, 177, "Persoon", "White") # default python constructer word hier gebruik
 
-print(user.last_name)
+user.information()
