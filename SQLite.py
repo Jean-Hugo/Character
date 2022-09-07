@@ -18,4 +18,7 @@ cursor.execute(command1)
 # create purchases table
 
 command2 = """CREATE TABLE IF NOT EXISTS
-purchases(purchase_id INTEGER PRIMARY KEY, store_id INTEGER, total_cost FLOAT, FOREIGN KEY(store_id) REFERENCES stores(store_id))"""
+purchases(purchase_id INTEGER PRIMARY KEY, store_id INTEGER, total_cost FLOAT, 
+FOREIGN KEY(store_id) REFERENCES stores(store_id))"""
+
+cursor.execute(command2)
