@@ -85,21 +85,25 @@ def search_people_in_database(person:str):
     return
 
 def buiild_the_window():
+    """Creates the window"""
     window = QWidget()
     window.setWindowTitle("Our App")
     return window
 
 def build_button(button_name="Button"):
+    """Creates the button object"""
     button = QPushButton()
     button.setText(button_name)
     return button
 
 def build_line_edit(placeholder_text="Uhm?"):
+    """Creates the line edit object"""
     line_edit = QLineEdit()
     line_edit.setPlaceholderText(placeholder_text)
     return line_edit
 
 def change_line_edit(the_line_edit:QLineEdit, text:str):
+    """Changes the line edit text style"""
     the_line_edit.setText(text)
     the_line_edit.move(250, 250)
     font = the_line_edit.font() # made a copy of the current font 
@@ -107,6 +111,7 @@ def change_line_edit(the_line_edit:QLineEdit, text:str):
     font.setBold(True) # Making bold
     the_line_edit.setFont(font) # Replacing the original font
     the_line_edit.resize(the_line_edit.sizeHint())
+    the_line_edit.setStyleSheet('color: red')
     return
 
 
