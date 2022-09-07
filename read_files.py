@@ -17,3 +17,5 @@ def main():
     print_file_contnet
 
 challenge = read_file("challenge.txt")
+
+print(challenge)
