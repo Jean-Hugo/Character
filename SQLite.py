@@ -22,3 +22,8 @@ purchases(purchase_id INTEGER PRIMARY KEY, store_id INTEGER, total_cost FLOAT,
 FOREIGN KEY(store_id) REFERENCES stores(store_id))"""
 
 cursor.execute(command2)
+
+# add to purchases
+
+cursor.execute("INSERT INTO purchases VALUES (54, 21, 15.49)")
+cursor.execute("INSERT INTO purchases VALUES (23, 64, 21.12)")
