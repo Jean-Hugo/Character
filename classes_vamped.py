@@ -28,6 +28,7 @@ class Person:
         return
 
 def print_name(person:Person):
+    """Prints name and surname of person"""
     print(person.name, person.surname)    
 
 def read_file(filename:str):
@@ -47,6 +48,7 @@ def get_split_person_details(person_details:str, split_char:str):
             return splitted_person_details
         raise Exception("Error with person details! Check file!")
     except Exception as e:
+        """If Exception runs this code happens"""
         print(e)
         return [person_details, "ERROR"]
 
@@ -130,15 +132,18 @@ def ux_charcter():
     app = QApplication([])
 
     def window():# The window
+        """Make the window of app"""
         return build_the_window()
 
     def button(parent, text):# The build
+        """Makes the button appear"""
         button = build_button()
         button.setParent(parent)
         button.setText(text)
         return button
     
     def lineEdit(parent, placetext): # The line edit 
+        """Edits the line"""
         line_edit = build_line_edit(placetext)
         line_edit.setParent(parent)
         return line_edit
