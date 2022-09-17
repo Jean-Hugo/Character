@@ -8,6 +8,12 @@ def exponent(x_values):
     return x_values * x_values
 
 
+def sum_list_values(values_list:list):
+    """ This function returns the sum of all the values in the list """
+    # TODO
+    return
+
+
 class TestMathFunction(unittest.TestCase):
     """Basic Example"""
     def test_Exponent(self):
@@ -18,6 +24,11 @@ class TestMathFunction(unittest.TestCase):
         """Failed Example"""
         self.assertEqual(exponent(3), 1)
 
+    def test_SumFunction(self):
+        """Tests the sum_list_value function"""
+        test_list = ["2", 4, 9]
+        self.assertEqual(sum_list_values(test_list), 15)
+        
 
 
 class TestUserInputValidations(unittest.TestCase):
