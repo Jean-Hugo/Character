@@ -12,7 +12,7 @@ def sum_list_values(values_list:list):
     """ This function returns the sum of all the values in the list """
     list_lenght = len(test_list) - 1
     for i in list_lenght:
-        x += test_list[i]
+        x += int(test_list[i])
     # TODO
     return
 
